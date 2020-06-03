@@ -1,0 +1,53 @@
+﻿@model UnivSite.Models.StudentDetails.PersonalDeatils
+<div class="container">
+    <div>
+        <h2>Personal Details</h2>
+    </div>
+    <div class="row">
+        <div class=" col-md-2">
+            <label>Name:</label>
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(model => model.ApplicantName)
+            @Html.ValidationMessageFor(model => model.ApplicantName)
+        </div>
+        <div class=" col-md-2">
+            <label>Mother Name:</label>
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(model => model.MotherName)
+            @Html.ValidationMessageFor(model => model.MotherName)
+        </div>
+    </div>
+    <div class=" row">
+        <div class=" col-md-2">
+            <label>Father Name:</label>
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(model => model.FatherName)
+            @Html.ValidationMessageFor(model => model.FatherName)
+        </div>
+        <div class=" col-md-2">
+            <label>College</label>
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(model => model.CollegeName)
+            @Html.ValidationMessageFor(model => model.CollegeName)
+        </div>
+    </div>
+    <div class=" row">
+        <div class=" col-md-2">
+            <label></label>
+        </div>
+        <div class="col-md-4">
+            <input type="button" title="save" />
+        </div>
+        <div class=" col-md-2">
+            <label></label>
+        </div>
+        <div class="col-md-4">
+            <input type="button" title="Cancel" />
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,53 @@
+﻿@model UnivSite.Models.StudentDetails.AddressDetails
+<div class="container">
+    <div>
+        <h2>Address Details</h2>
+    </div>
+    <div class="row">
+        <div class=" col-md-2">
+            <label>Full Address:</label>
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(model => model.FullAddress)
+            @Html.ValidationMessageFor(model => model.FullAddress)
+        </div>
+        <div class=" col-md-2">
+            <label>Phone Number Office:</label>
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(model => model.PhoneNumberOffice)
+            @Html.ValidationMessageFor(model => model.PhoneNumberOffice)
+        </div>
+    </div>
+    <div class=" row">
+        <div class=" col-md-2">
+            <label>Phone Number Residence</label>
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(model => model.PhoneNumberResidence)
+            @Html.ValidationMessageFor(model => model.PhoneNumberResidence)
+        </div>
+        <div class=" col-md-2">
+            <label>EmailId</label>
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(model => model.EmailId)
+            @Html.ValidationMessageFor(model => model.EmailId)
+        </div>
+    </div>
+    <div class=" row">
+        <div class=" col-md-2">
+            <label></label>
+        </div>
+        <div class="col-md-4">
+            <input type="button" title="save" />
+        </div>
+        <div class=" col-md-2">
+            <label></label>
+        </div>
+        <div class="col-md-4">
+            <input type="button" title="Cancel" />
+        </div>
+    </div>
+
+</div>

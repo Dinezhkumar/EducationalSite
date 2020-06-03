@@ -1,22 +1,19 @@
-﻿@model UnivSite.Models.StudentDetails.AddressDetails
+﻿@model UnivSite.Models.StudentDetails.StudentDetailsModel
 <div class="container">
-    <div>
-        <h2>Address Details</h2>
-    </div>
     <div class="row">
         <div class=" col-md-2">
             <label>Full Address:</label>
         </div>
         <div class="col-md-4">
-            @Html.TextBoxFor(model => model.FullAddress)
-            @Html.ValidationMessageFor(model => model.FullAddress)
+            @Html.TextBoxFor(model => model.AddressDetails.FullAddress)
+            @Html.ValidationMessageFor(model => model.AddressDetails.FullAddress)
         </div>
         <div class=" col-md-2">
             <label>Phone Number Office:</label>
         </div>
         <div class="col-md-4">
-            @Html.TextBoxFor(model => model.PhoneNumberOffice)
-            @Html.ValidationMessageFor(model => model.PhoneNumberOffice)
+            @Html.TextBoxFor(model => model.AddressDetails.PhoneNumberOffice)
+            @Html.ValidationMessageFor(model => model.AddressDetails.PhoneNumberOffice)
         </div>
     </div>
     <div class=" row">
@@ -24,15 +21,15 @@
             <label>Phone Number Residence</label>
         </div>
         <div class="col-md-4">
-            @Html.TextBoxFor(model => model.PhoneNumberResidence)
-            @Html.ValidationMessageFor(model => model.PhoneNumberResidence)
+            @Html.TextBoxFor(model => model.AddressDetails.PhoneNumberResidence)
+            @Html.ValidationMessageFor(model => model.AddressDetails.PhoneNumberResidence)
         </div>
         <div class=" col-md-2">
             <label>EmailId</label>
         </div>
         <div class="col-md-4">
-            @Html.TextBoxFor(model => model.EmailId)
-            @Html.ValidationMessageFor(model => model.EmailId)
+            @Html.TextBoxFor(model => model.AddressDetails.EmailId)
+            @Html.ValidationMessageFor(model => model.AddressDetails.EmailId)
         </div>
     </div>
     <div class=" row">
@@ -40,14 +37,14 @@
             <label></label>
         </div>
         <div class="col-md-4">
-            <input type="button" title="save" />
+            <input type="button" title="save" value="Save" />
         </div>
-        <div class=" col-md-2">
+        @*<div class=" col-md-2">
             <label></label>
         </div>
         <div class="col-md-4">
             <input type="button" title="Cancel" />
-        </div>
+        </div>*@
     </div>
 
 </div>

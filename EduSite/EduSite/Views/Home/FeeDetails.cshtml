@@ -1,23 +1,20 @@
-﻿@model UnivSite.Models.StudentDetails.FeeDetails
+﻿@model UnivSite.Models.StudentDetails.StudentDetailsModel
 
 <div class="container">
-    <div>
-        <h2>Address Details</h2>
-    </div>
     <div class="row">
         <div class=" col-md-2">
             <label>TransactionId:</label>
         </div>
         <div class="col-md-4">
-            @Html.TextBoxFor(model => model.TransactionId)
-            @Html.ValidationMessageFor(model => model.TransactionId)
+            @Html.TextBoxFor(model => model.FeeDetails.TransactionId)
+            @Html.ValidationMessageFor(model => model.FeeDetails.TransactionId)
         </div>
         <div class=" col-md-2">
             <label>Date:</label>
         </div>
         <div class="col-md-4">
-            @Html.TextBoxFor(model => model.Date)
-            @Html.ValidationMessageFor(model => model.Date)
+            @Html.TextBoxFor(model => model.FeeDetails.Date)
+            @Html.ValidationMessageFor(model => model.FeeDetails.Date)
         </div>
     </div>
     <div class=" row">
@@ -25,15 +22,15 @@
             <label>Phone Number Residence</label>
         </div>
         <div class="col-md-4">
-            @Html.TextBoxFor(model => model.PayeeName)
-            @Html.ValidationMessageFor(model => model.PayeeName)
+            @Html.TextBoxFor(model => model.FeeDetails.PayeeName)
+            @Html.ValidationMessageFor(model => model.FeeDetails.PayeeName)
         </div>
         <div class=" col-md-2">
             <label>EmailId</label>
         </div>
         <div class="col-md-4">
-            @Html.TextBoxFor(model => model.FathersName)
-            @Html.ValidationMessageFor(model => model.FathersName)
+            @Html.TextBoxFor(model => model.FeeDetails.FathersName)
+            @Html.ValidationMessageFor(model => model.FeeDetails.FathersName)
         </div>
     </div>
     <div class=" row">
@@ -41,14 +38,14 @@
             <label></label>
         </div>
         <div class="col-md-4">
-            <input type="button" title="save" />
+            <input type="button" title="save" value="Save"/>
         </div>
-        <div class=" col-md-2">
+        @*<div class=" col-md-2">
             <label></label>
         </div>
         <div class="col-md-4">
             <input type="button" title="Cancel" />
-        </div>
+        </div>*@
     </div>
 
 </div>

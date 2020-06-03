@@ -1,0 +1,263 @@
+﻿
+
+@model UnivSite.Models.StudentDetails.StudentDetailsModel
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<body>
+    <table id="tblCustomers" class="table" cellpadding="0" cellspacing="0">
+        <tr>
+            <th style="display:none;">CourseId</th>
+            <th style="width:150px">Course</th>
+            <th style="width:150px">Semester</th>
+            <th style="width:150px">Year</th>
+            <th style="width:150px">College</th>
+            <th style="width:150px">MarksScored</th>
+            <th style="width:150px">MaxMarks</th>
+            <th style="width:150px"></th>
+        </tr>
+        @if (Model.AcademicDetails != null)
+        {
+            foreach (var Details in Model.AcademicDetails)
+            {
+                <tr>
+                    <td style="display:none;" class="CourserId">
+                        <span>@Details.AcademicDetailsId</span>
+                    </td>
+                    <td class="Course">
+                        <span>@Details.Course</span>
+                        <input type="text" value="@Details.Course" style="display:none" />
+                    </td>
+                    <td class="Semester">
+                        <span>@Details.Semester</span>
+                        <input type="text" value="@Details.Semester" style="display:none" />
+                    </td>
+                    <td class="Year">
+                        <span>@Details.Year</span>
+                        <input type="text" value="@Details.Year" style="display:none" />
+                    </td>
+                    <td class="CollegeName">
+                        <span>@Details.CollegeName</span>
+                        <input type="text" value="@Details.CollegeName" style="display:none" />
+                    </td>
+                    <td class="MarksScored">
+                        <span>@Details.MarksScored</span>
+                        <input type="text" value="@Details.MarksScored" style="display:none" />
+                    </td>
+
+                    <td>
+                    <td class="MaxMark">
+                        <span>@Details.MaxMark</span>
+                        <input type="text" value="@Details.MaxMark" style="display:none" />
+                    </td>
+
+                    <td>
+                        <a class="Edit" href="javascript:;">Edit</a>
+                        <a class="Update" href="javascript:;" style="display:none">Update</a>
+                        <a class="Cancel" href="javascript:;" style="display:none">Cancel</a>
+                        <a class="Delete" href="javascript:;">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td style="width: 150px">
+                Course<br />
+                <input type="text" id="txtCourse" style="width:140px" />
+            </td>
+            <td style="width: 150px">
+                Semester<br />
+                <input type="text" id="txtSemester" style="width:140px" />
+            </td>
+            <td style="width: 150px">
+                Year<br />
+                <input type="text" id="txtYear" style="width:140px" />
+            </td>
+            <td style="width: 150px">
+                CollegeName<br />
+                <input type="text" id="txtCollege" style="width:140px" />
+            </td>
+            <td style="width: 150px">
+                MarksScored<br />
+                <input type="text" id="txtMarksScored" style="width:140px" />
+            </td>
+            <td style="width: 150px">
+                MaxMarks<br />
+                <input type="text" id="txtMaxMarks" style="width:140px" />
+            </td>
+            <td style="width: 200px">
+                <br />
+                <input type="button" id="btnAdd" value="Add" />
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //Remove the dummy row if data present.
+            if ($("#tblCustomers tr").length > 2) {
+                $("#tblCustomers tr:eq(1)").remove();
+            } else {
+                var row = $("#tblCustomers tr:last-child");
+                row.find(".Edit").hide();
+                row.find(".Delete").hide();
+                row.find("span").html('&nbsp;');
+            }
+        });
+
+        function AppendRow(row, CourserId, Course, Semester, Year, CollegeName, MarksScored, MaxMark) {
+            //Bind CourserId.
+            $(".CourserId", row).find("span").html(CourserId);
+
+            //Bind Course.
+            $(".Course", row).find("span").html(Course);
+            $(".Course", row).find("input").val(Course);
+
+            $(".Semester", row).find("span").html(Semester);
+            $(".Semester", row).find("input").val(Semester);
+
+            $(".Year", row).find("span").html(Year);
+            $(".Year", row).find("input").val(Year);
+
+            $(".CollegeName", row).find("span").html(CollegeName);
+            $(".CollegeName", row).find("input").val(CollegeName);
+
+            $(".MarksScored", row).find("span").html(MarksScored);
+            $(".MarksScored", row).find("input").val(MarksScored);
+
+            $(".MaxMark", row).find("span").html(MaxMark);
+            $(".MaxMark", row).find("input").val(MaxMark);
+
+            row.find(".Edit").show();
+            row.find(".Delete").show();
+            $("#tblCustomers").append(row);
+        };
+
+        //Add event handler.
+        $("body").on("click", "#btnAdd", function () {
+            var txtCourse = $("#txtCourse");
+            var txtSemester = $("#txtSemester");
+            var txtYear = $("#txtYear");
+            var txtCollege = $("#txtCollege");
+            var txtMarksScored = $("#txtMarksScored");
+            var txtMaxMarks = $("#txtMaxMarks");
+
+            $.ajax({
+                type: "POST",
+                url: "/Home/InsertAcademicDetails",
+                data: '{course: "' + txtCourse.val() + '", semester: "' + txtSemester.val() + '", Year: "' + txtYear.val() + '", CollegeName: "' + txtCollege.val() + '", MarksScored: "' + txtMarksScored.val() + '", MaxMark: "' + txtMaxMarks.val() + '" }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    var row = $("#tblCustomers tr:last-child");
+                    if ($("#tblCustomers tr:last-child span").eq(0).html() != "&nbsp;") {
+                        row = row.clone();
+                    }
+                    AppendRow(row, r.AcademicDetailsId, r.Course, r.Semester, r.Year, r.CollegeName, r.MarksScored, r.MaxMark);
+                    txtCourse.val("");
+                    txtSemester.val("");
+                }
+            });
+        });
+
+        //Edit event handler.
+        $("body").on("click", "#tblCustomers .Edit", function () {
+            var row = $(this).closest("tr");
+            $("td", row).each(function () {
+                if ($(this).find("input").length > 0) {
+                    $(this).find("input").show();
+                    $(this).find("span").hide();
+                }
+            });
+            row.find(".Update").show();
+            row.find(".Cancel").show();
+            row.find(".Delete").hide();
+            $(this).hide();
+        });
+
+        //Update event handler.
+        $("body").on("click", "#tblCustomers .Update", function () {
+            var row = $(this).closest("tr");
+            $("td", row).each(function () {
+                if ($(this).find("input").length > 0) {
+                    var span = $(this).find("span");
+                    var input = $(this).find("input");
+                    span.html(input.val());
+                    span.show();
+                    input.hide();
+                }
+            });
+            row.find(".Edit").show();
+            row.find(".Delete").show();
+            row.find(".Cancel").hide();
+            $(this).hide();
+
+            var AcademicDetails = {};
+            AcademicDetails.CustomerId = row.find(".CourserId").find("span").html();
+            AcademicDetails.Course = row.find(".Course").find("span").html();
+            AcademicDetails.Semester = row.find(".Semester").find("span").html();
+            AcademicDetails.Year = row.find(".Year").find("span").html();
+            AcademicDetails.CollegeName = row.find(".CollegeName").find("span").html();
+            AcademicDetails.MarksScored = row.find(".MarksScored").find("span").html();
+            AcademicDetails.MaxMark = row.find(".MaxMark").find("span").html();
+            $.ajax({
+                type: "POST",
+                url: "/Home/UpdateAcademicDetails",
+                data: '{AcademicDetails:' + JSON.stringify(AcademicDetails) + '}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            });
+        });
+
+        //Cancel event handler.
+        $("body").on("click", "#tblCustomers .Cancel", function () {
+            var row = $(this).closest("tr");
+            $("td", row).each(function () {
+                if ($(this).find("input").length > 0) {
+                    var span = $(this).find("span");
+                    var input = $(this).find("input");
+                    input.val(span.html());
+                    span.show();
+                    input.hide();
+                }
+            });
+            row.find(".Edit").show();
+            row.find(".Delete").show();
+            row.find(".Update").hide();
+            $(this).hide();
+        });
+
+        //Delete event handler.
+        $("body").on("click", "#tblCustomers .Delete", function () {
+            if (confirm("Do you want to delete this row?")) {
+                var row = $(this).closest("tr");
+                var CourserId = row.find("span").html();
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/DeleteAcademicDetails",
+                    data: '{CourserId: ' + CourserId + '}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        if ($("#tblCustomers tr").length > 2) {
+                            row.remove();
+                        } else {
+                            row.find(".Edit").hide();
+                            row.find(".Delete").hide();
+                            row.find("span").html('&nbsp;');
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

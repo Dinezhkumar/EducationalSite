@@ -1,50 +1,51 @@
 ﻿@model UnivSite.Models.StudentDetails.StudentDetailsModel
 <div class="container">
-    <div class="row">
-        <div class=" col-md-2">
-            <label>Full Address:</label>
+    <form method="post" action="Home\SaveAddressDetails">
+        <div class="row">
+            <div class=" col-md-2">
+                <label>Full Address:</label>
+            </div>
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.AddressDetails.FullAddress, new { id = "FullAddress", name = "FullAddress" })
+                @Html.ValidationMessageFor(model => model.AddressDetails.FullAddress)
+            </div>
+            <div class=" col-md-2">
+                <label>Phone Number Office:</label>
+            </div>
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.AddressDetails.PhoneNumberOffice, new { id = "PhoneNumberOffice", name = "PhoneNumberOffice" })
+                @Html.ValidationMessageFor(model => model.AddressDetails.PhoneNumberOffice)
+            </div>
         </div>
-        <div class="col-md-4">
-            @Html.TextBoxFor(model => model.AddressDetails.FullAddress)
-            @Html.ValidationMessageFor(model => model.AddressDetails.FullAddress)
+        <div class=" row">
+            <div class=" col-md-2">
+                <label>Phone Number Residence</label>
+            </div>
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.AddressDetails.PhoneNumberResidence, new { id = "PhoneNumberResidence", name = "PhoneNumberResidence" })
+                @Html.ValidationMessageFor(model => model.AddressDetails.PhoneNumberResidence)
+            </div>
+            <div class=" col-md-2">
+                <label>EmailId</label>
+            </div>
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.AddressDetails.EmailId, new { id = "EmailId", name = "EmailId" })
+                @Html.ValidationMessageFor(model => model.AddressDetails.EmailId)
+            </div>
         </div>
-        <div class=" col-md-2">
-            <label>Phone Number Office:</label>
+        <div class=" row">
+            <div class=" col-md-2">
+                <label></label>
+            </div>
+            <div class="col-md-4">
+                <input type="button" title="save" value="Save" />
+            </div>
+            @*<div class=" col-md-2">
+                <label></label>
+            </div>
+            <div class="col-md-4">
+                <input type="button" title="Cancel" />
+            </div>*@
         </div>
-        <div class="col-md-4">
-            @Html.TextBoxFor(model => model.AddressDetails.PhoneNumberOffice)
-            @Html.ValidationMessageFor(model => model.AddressDetails.PhoneNumberOffice)
-        </div>
-    </div>
-    <div class=" row">
-        <div class=" col-md-2">
-            <label>Phone Number Residence</label>
-        </div>
-        <div class="col-md-4">
-            @Html.TextBoxFor(model => model.AddressDetails.PhoneNumberResidence)
-            @Html.ValidationMessageFor(model => model.AddressDetails.PhoneNumberResidence)
-        </div>
-        <div class=" col-md-2">
-            <label>EmailId</label>
-        </div>
-        <div class="col-md-4">
-            @Html.TextBoxFor(model => model.AddressDetails.EmailId)
-            @Html.ValidationMessageFor(model => model.AddressDetails.EmailId)
-        </div>
-    </div>
-    <div class=" row">
-        <div class=" col-md-2">
-            <label></label>
-        </div>
-        <div class="col-md-4">
-            <input type="button" title="save" value="Save" />
-        </div>
-        @*<div class=" col-md-2">
-            <label></label>
-        </div>
-        <div class="col-md-4">
-            <input type="button" title="Cancel" />
-        </div>*@
-    </div>
-
+        </form>
 </div>

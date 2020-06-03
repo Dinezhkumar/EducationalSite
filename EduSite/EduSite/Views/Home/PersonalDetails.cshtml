@@ -1,48 +1,73 @@
 ﻿@model UnivSite.Models.StudentDetails.StudentDetailsModel
 
-@{
-    Layout = null;
-}
 
-<div class="container">
-    <div class="row">
-        <div class=" col-md-2">
-            <label>Name:</label>
-        </div>
-        <div class="col-md-4">
-            @Html.TextBoxFor(Model => Model.PersonalDetails.ApplicantName)
-            @Html.ValidationMessageFor(Model => Model.PersonalDetails.ApplicantName)
-        </div>
-        <div class=" col-md-2">
-            <label>Mother Name:</label>
-        </div>
-        <div class="col-md-4">
-            @Html.TextBoxFor(Model => Model.PersonalDetails.MotherName)
-            @Html.ValidationMessageFor(Model => Model.PersonalDetails.MotherName)
-        </div>
-    </div>
-    <div class=" row">
-        <div class=" col-md-2">
-            <label>Father Name:</label>
-        </div>
-        <div class="col-md-4">
-            @Html.TextBoxFor(Model => Model.PersonalDetails.FatherName)
-            @Html.ValidationMessageFor(Model => Model.PersonalDetails.FatherName)
-        </div>
-    </div>
-    <div class=" row">
-        <div class=" col-md-2">
-            <label></label>
-        </div>
-        <div class="col-md-4">
-            <input type="button" title="save" value="Save" />
-        </div>
-        @*<div class=" col-md-2">
-            <label></label>
-        </div>
-        <div class="col-md-4">
-            <input type="button" title="Cancel" />
-        </div>*@
-    </div>
+    <div class="container">
+        <form method="post" action="Home\SavePersonalDetails">
+            <div class="row">
+                <div class=" col-md-2">
+                    <label>Name:</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(Model => Model.PersonalDetails.ApplicantName, new { id = "Name", name = "Name" })
+                    @Html.ValidationMessageFor(Model => Model.PersonalDetails.ApplicantName)
+                </div>
+                <div class=" col-md-2">
+                    <label>Mother Name:</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(Model => Model.PersonalDetails.MotherName, new { id = "MotherName", name = "MotherName" })
+                    @Html.ValidationMessageFor(Model => Model.PersonalDetails.MotherName)
+                </div>
+            </div>
+            <div class=" row">
+                <div class=" col-md-2">
+                    <label>Father Name:</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(Model => Model.PersonalDetails.FatherName, new { id = "FatherName", name = "FatherName" })
+                    @Html.ValidationMessageFor(Model => Model.PersonalDetails.FatherName)
+                </div>
+                <div class=" col-md-2">
+                    <label>Registration No:</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(Model => Model.PersonalDetails.FatherName, new { id = "RegistrationNo", name = "RegistrationNo" })
+                    @Html.ValidationMessageFor(Model => Model.PersonalDetails.RegistrationNo)
+                </div>
 
-</div>
+            </div>
+            <div class=" row">
+                <div class=" col-md-2">
+                    <label>Nature Of Document:</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(Model => Model.PersonalDetails.FatherName, new { id = "NatureOfDocument", name = "NatureOfDocument" })
+                    @Html.ValidationMessageFor(Model => Model.PersonalDetails.NatureOfDocument)
+                </div>
+                <div class=" col-md-2">
+                    <label>Reason Of Applying:</label>
+                </div>
+
+                <div class="col-md-4">
+                    @Html.TextBoxFor(Model => Model.PersonalDetails.ReasonOfApplying, new { id = "ReasonOfApplying", name = "ReasonOfApplying" })
+                    @Html.ValidationMessageFor(Model => Model.PersonalDetails.ReasonOfApplying)
+                </div>
+
+            </div>
+            <div class=" row">
+                <div class=" col-md-2">
+                    <label></label>
+                </div>
+                <div class="col-md-4">
+                    <input type="button" title="save" value="Save" />
+                </div>
+                @*<div class=" col-md-2">
+                <label></label>
+            </div>
+            <div class="col-md-4">
+                <input type="button" title="Cancel" />
+            </div>*@
+            </div>
+        </form>
+
+    </div>

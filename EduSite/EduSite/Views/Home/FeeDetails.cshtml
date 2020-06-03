@@ -1,51 +1,84 @@
 ﻿@model UnivSite.Models.StudentDetails.StudentDetailsModel
 
-<div class="container">
-    <div class="row">
-        <div class=" col-md-2">
-            <label>TransactionId:</label>
-        </div>
-        <div class="col-md-4">
-            @Html.TextBoxFor(model => model.FeeDetails.TransactionId)
-            @Html.ValidationMessageFor(model => model.FeeDetails.TransactionId)
-        </div>
-        <div class=" col-md-2">
-            <label>Date:</label>
-        </div>
-        <div class="col-md-4">
-            @Html.TextBoxFor(model => model.FeeDetails.Date)
-            @Html.ValidationMessageFor(model => model.FeeDetails.Date)
-        </div>
+    <div class="container">
+        <form method="post" action="Home\SaveFeeDetails">
+            <div class="row">
+                <div class=" col-md-2">
+                    <label>TransactionId:</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model.FeeDetails.TransactionId, new { id = "TransactionId", name = "TransactionId" })
+                    @Html.ValidationMessageFor(model => model.FeeDetails.TransactionId)
+                </div>
+                <div class=" col-md-2">
+                    <label>Date:</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model.FeeDetails.Date, new { id = "Date", name = "Date" })
+                    @Html.ValidationMessageFor(model => model.FeeDetails.Date)
+                </div>
+            </div>
+            <div class=" row">
+                <div class=" col-md-2">
+                    <label>Phone Number Residence</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model.FeeDetails.PayeeName, new { id = "PayeeName", name = "PayeeName" })
+                    @Html.ValidationMessageFor(model => model.FeeDetails.PayeeName)
+                </div>
+                <div class=" col-md-2">
+                    <label>EmailId</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model.FeeDetails.FathersName, new { id = "FathersName", name = "FathersName" })
+                    @Html.ValidationMessageFor(model => model.FeeDetails.FathersName)
+                </div>
+            </div>
+            <div class=" row">
+                <div class=" col-md-2">
+                    <label>StudentId</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model.FeeDetails.StudentId, new { id = "StudentId", name = "StudentId" })
+                    @Html.ValidationMessageFor(model => model.FeeDetails.StudentId)
+                </div>
+                <div class=" col-md-2">
+                    <label>DOB</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model.FeeDetails.DOB, new { id = "DOB", name = "DOB" })
+                    @Html.ValidationMessageFor(model => model.FeeDetails.DOB)
+                </div>
+            </div>
+            <div class=" row">
+                <div class=" col-md-2">
+                    <label>PhoneNumberOffice</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model.FeeDetails.PhoneNumberOffice, new { id = "PhoneNumberOffice", name = "PhoneNumberOffice" })
+                    @Html.ValidationMessageFor(model => model.FeeDetails.PhoneNumberOffice)
+                </div>
+                <div class=" col-md-2">
+                    <label>FeeDescription</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model.FeeDetails.FeeDescription, new { id = "FeeDescription", name = "FeeDescription" })
+                    @Html.ValidationMessageFor(model => model.FeeDetails.FeeDescription)
+                </div>
+            </div>
+            <div class=" row">
+                <div class=" col-md-2">
+                    <label></label>
+                </div>
+                <div class="col-md-4">
+                    <input type="button" title="save" value="Save" />
+                </div>
+                @*<div class=" col-md-2">
+                <label></label>
+            </div>
+            <div class="col-md-4">
+                <input type="button" title="Cancel" />
+            </div>*@
+            </div>
+        </form>
     </div>
-    <div class=" row">
-        <div class=" col-md-2">
-            <label>Phone Number Residence</label>
-        </div>
-        <div class="col-md-4">
-            @Html.TextBoxFor(model => model.FeeDetails.PayeeName)
-            @Html.ValidationMessageFor(model => model.FeeDetails.PayeeName)
-        </div>
-        <div class=" col-md-2">
-            <label>EmailId</label>
-        </div>
-        <div class="col-md-4">
-            @Html.TextBoxFor(model => model.FeeDetails.FathersName)
-            @Html.ValidationMessageFor(model => model.FeeDetails.FathersName)
-        </div>
-    </div>
-    <div class=" row">
-        <div class=" col-md-2">
-            <label></label>
-        </div>
-        <div class="col-md-4">
-            <input type="button" title="save" value="Save"/>
-        </div>
-        @*<div class=" col-md-2">
-            <label></label>
-        </div>
-        <div class="col-md-4">
-            <input type="button" title="Cancel" />
-        </div>*@
-    </div>
-
-</div>

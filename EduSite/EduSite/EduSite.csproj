@@ -164,6 +164,7 @@
     <Content Include="Views\Home\FeeDetails.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\PersonalDetails.cshtml" />
+    <Content Include="Views\Home\AcademicDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

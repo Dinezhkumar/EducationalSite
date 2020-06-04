@@ -139,7 +139,7 @@ namespace EduSite.Controllers
 
             //AcademicDetails academicDetails1 = new AcademicDetails();
 
-            return Json(new { Result = academicDetails });
+            return Json(new { result = academicDetails });
         }
 
         [HttpPost]

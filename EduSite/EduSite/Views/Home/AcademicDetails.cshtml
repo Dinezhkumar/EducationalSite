@@ -20,6 +20,44 @@
             <th style="width:150px">MaxMarks</th>
             <th style="width:150px"></th>
         </tr>
+        <tr>
+            <td style="display:none;" class="CourserId">
+                <span></span>
+            </td>
+            <td class="Course">
+                <span></span>
+                <input type="text" value="" style="display:none" />
+            </td>
+            <td class="Semester">
+                <span></span>
+                <input type="text" value="" style="display:none" />
+            </td>
+            <td class="Year">
+                <span></span>
+                <input type="text" value="" style="display:none" />
+            </td>
+            <td class="CollegeName">
+                <span></span>
+                <input type="text" value="" style="display:none" />
+            </td>
+            <td class="MarksScored">
+                <span></span>
+                <input type="text" value="" style="display:none" />
+            </td>
+
+            <td>
+            <td class="MaxMark">
+                <span></span>
+                <input type="text" value="" style="display:none" />
+            </td>
+
+            <td>
+                <a class="Edit" href="javascript:;" style="display:none">Edit</a>
+                <a class="Update" href="javascript:;" style="display:none">Update</a>
+                <a class="Cancel" href="javascript:;" style="display:none">Cancel</a>
+                <a class="Delete" href="javascript:;" style="display:none">Delete</a>
+            </td>
+        </tr>
         @if (Model.AcademicDetails != null)
         {
             foreach (var Details in Model.AcademicDetails)
@@ -156,9 +194,9 @@
                 data: '{course: "' + txtCourse.val() + '", semester: "' + txtSemester.val() + '", Year: "' + txtYear.val() + '", CollegeName: "' + txtCollege.val() + '", MarksScored: "' + txtMarksScored.val() + '", MaxMark: "' + txtMaxMarks.val() + '" }',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function (r) {
-
-                    if (r == 'Please fill all the details')
+                success: function (result) {
+                    debugger
+                    if (result.result == 'Please fill all the details')
                         alert('Please fill all the details');
                     else {
                         debugger;
@@ -166,8 +204,8 @@
                         if ($("#tblCustomers tr:last-child span").eq(0).html() != "&nbsp;") {
                             row = row.clone();
                         }
-                        console.log(r);
-                        AppendRow(row, r.AcademicDetailsId, r.Course, r.Semester, r.Year, r.CollegeName, r.MarksScored, r.MaxMark);
+                        console.log(result);
+                        AppendRow(row, result.result.AcademicDetailsId, result.result.Course, result.result.Semester, result.result.Year, result.result.CollegeName, result.result.MarksScored, result.result.MaxMark);
                         txtCourse.val("");
                         txtSemester.val("");
                         txtYear.val("");

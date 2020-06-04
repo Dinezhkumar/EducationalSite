@@ -13,21 +13,30 @@ namespace EduSite.SqlDal
         #region AcademicDetails
         public string AddAcademicDetails(AcademicDetails academicDetails)
         {
-            string AcademicDetailsId = new Guid().ToString();
+            string AcademicDetailsId = Guid.NewGuid().ToString();
             string connectionString = System.Configuration.ConfigurationManager.
              ConnectionStrings["DBConnectionString"].ConnectionString;
-            string query = "INSERT INTO AcademicDetails VALUES(@AcademicDetailsId, @Course, @Semester, @Year, @CollegeName, @MarksScored, @MaxMark)";
+            string query = "INSERT INTO AcademicDetails VALUES(@AcademicDetailsId,@StudentId, @Course, @Semester, @Year, @CollegeName, @MarksScored, @MaxMark,@UploadFileId,@status)";
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(query))
                 {
                     cmd.Parameters.AddWithValue("@AcademicDetailsId", AcademicDetailsId);
+                    if (string.IsNullOrEmpty(academicDetails.StudentId))
+                        cmd.Parameters.AddWithValue("@StudentId", DBNull.Value);
+                    else
+                        cmd.Parameters.Add("@StudentId", System.Data.SqlDbType.NVarChar).Value = academicDetails.StudentId;
+                    if (string.IsNullOrEmpty(academicDetails.UploadFileId))
+                        cmd.Parameters.AddWithValue("@UploadFileId", DBNull.Value);
+                    else
+                        cmd.Parameters.Add("@UploadFileId", System.Data.SqlDbType.NVarChar).Value = academicDetails.UploadFileId;
                     cmd.Parameters.AddWithValue("@Course", academicDetails.Course);
                     cmd.Parameters.AddWithValue("@Semester", academicDetails.Semester);
                     cmd.Parameters.AddWithValue("@Year", academicDetails.Year);
                     cmd.Parameters.AddWithValue("@CollegeName", academicDetails.CollegeName);
                     cmd.Parameters.AddWithValue("@MarksScored", academicDetails.MarksScored);
                     cmd.Parameters.AddWithValue("@MaxMark", academicDetails.MaxMark);
+                    cmd.Parameters.AddWithValue("@status", true);
                     cmd.Connection = con;
                     con.Open();
                     cmd.ExecuteNonQuery();

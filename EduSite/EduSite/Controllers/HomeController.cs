@@ -22,11 +22,11 @@ namespace EduSite.Controllers
         {
             PersonalDetails personalDetails = new PersonalDetails();
 
-            if(!string.IsNullOrEmpty(formCollection["Name"]))
+            if (!string.IsNullOrEmpty(formCollection["Name"]))
             {
                 personalDetails.ApplicantName = formCollection["Name"].ToString();
             }
-            if(!string.IsNullOrEmpty(formCollection["MotherName"]))
+            if (!string.IsNullOrEmpty(formCollection["MotherName"]))
             {
                 personalDetails.MotherName = formCollection["MotherName"].ToString();
             }
@@ -47,7 +47,7 @@ namespace EduSite.Controllers
                 personalDetails.RegistrationNo = formCollection["ReasonOfApplying"].ToString();
             }
             StudentDetailsDal studentDetailsDal = new StudentDetailsDal();
-            studentDetailsDal.AddPersonalDetails(personalDetails);
+            personalDetails.StudentId = studentDetailsDal.AddPersonalDetails(personalDetails);
             return View("PersonalDetails.cshtml", personalDetails);
         }
 
@@ -72,7 +72,7 @@ namespace EduSite.Controllers
                 addressDetails.EmailId = formCollection["EmailId"].ToString();
             }
             StudentDetailsDal studentDetailsDal = new StudentDetailsDal();
-            studentDetailsDal.SaveAddressDetails(addressDetails);
+            addressDetails.AddressDetailsId = studentDetailsDal.SaveAddressDetails(addressDetails);
             return View();
         }
 
@@ -118,20 +118,40 @@ namespace EduSite.Controllers
                 feeDetails.Amount = Convert.ToDecimal(formCollection["Amount"]);
             }
             StudentDetailsDal studentDetailsDal = new StudentDetailsDal();
-            studentDetailsDal.AddFeeDetails(feeDetails);
+            feeDetails.FeeDetailsId = studentDetailsDal.AddFeeDetails(feeDetails);
             return View();
         }
 
         [HttpPost]
-        public ActionResult InsertAcademicDetails(AcademicDetails academicDetails)
+        public JsonResult InsertAcademicDetails(AcademicDetails academicDetails)
         {
-            return new EmptyResult();
+            if (string.IsNullOrEmpty(academicDetails.Course) || string.IsNullOrEmpty(academicDetails.Semester) || string.IsNullOrEmpty(academicDetails.Year) || string.IsNullOrEmpty(academicDetails.CollegeName) || academicDetails.MaxMark == 0)
+            {
+                return Json(new { result = "Please fill all the details" });
+            }
+            StudentDetailsDal studentDetailsDal = new StudentDetailsDal();
+            if (string.IsNullOrEmpty(academicDetails.AcademicDetailsId))
+                academicDetails.AcademicDetailsId = studentDetailsDal.AddAcademicDetails(academicDetails);
+            else
+                studentDetailsDal.UpdateAcademicDetails(academicDetails);
+
+            //AcademicDetails academicDetails1 = new AcademicDetails();
+
+            return Json(new { Result = academicDetails });
         }
 
         [HttpPost]
-        public ActionResult UpdateAcademicDetails(AcademicDetails customer)
+        public ActionResult UpdateAcademicDetails(AcademicDetails academicDetails)
         {
-
+            if (string.IsNullOrEmpty(academicDetails.Course) || string.IsNullOrEmpty(academicDetails.Semester) || string.IsNullOrEmpty(academicDetails.Year) || string.IsNullOrEmpty(academicDetails.CollegeName) || academicDetails.MaxMark == 0)
+            {
+                return Json(new { result = "Please fill all the details" });
+            }
+            StudentDetailsDal studentDetailsDal = new StudentDetailsDal();
+            if (string.IsNullOrEmpty(academicDetails.AcademicDetailsId))
+                academicDetails.AcademicDetailsId = studentDetailsDal.AddAcademicDetails(academicDetails);
+            else
+                studentDetailsDal.UpdateAcademicDetails(academicDetails);
 
             return new EmptyResult();
         }

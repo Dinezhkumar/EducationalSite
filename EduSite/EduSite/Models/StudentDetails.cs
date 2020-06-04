@@ -35,14 +35,14 @@ namespace UnivSite.Models
             public string Semester { get; set; }
             public string Year { get; set; }
             public string CollegeName { get; set; }
-            public string MarksScored { get; set; }
-            public string MaxMark { get; set; }
+            public decimal MarksScored { get; set; }
+            public decimal MaxMark { get; set; }
             public string UploadFile { get; set; }
 
         }
         public class AddressDetails
         {
-            public string AddressDetailsDetailsId { get; set; }
+            public string AddressDetailsId { get; set; }
             public string StudentId { get; set; }
             public string FullAddress { get; set; }
             public string PhoneNumberOffice { get; set; }

@@ -22,54 +22,56 @@ namespace EduSite.Controllers
         {
             PersonalDetails personalDetails = new PersonalDetails();
 
-            if (!string.IsNullOrEmpty(formCollection["Name"]))
+            if (!string.IsNullOrEmpty(formCollection["PersonalDetails.ApplicantName"]))
             {
-                personalDetails.ApplicantName = formCollection["Name"].ToString();
+                personalDetails.ApplicantName = formCollection["PersonalDetails.ApplicantName"].ToString();
             }
-            if (!string.IsNullOrEmpty(formCollection["MotherName"]))
+            if (!string.IsNullOrEmpty(formCollection["PersonalDetails.MotherName"]))
             {
-                personalDetails.MotherName = formCollection["MotherName"].ToString();
+                personalDetails.MotherName = formCollection["PersonalDetails.MotherName"].ToString();
             }
-            if (!string.IsNullOrEmpty(formCollection["FatherName"]))
+            if (!string.IsNullOrEmpty(formCollection["PersonalDetails.FatherName"]))
             {
-                personalDetails.MotherName = formCollection["FatherName"].ToString();
+                personalDetails.FatherName = formCollection["PersonalDetails.FatherName"].ToString();
             }
-            if (!string.IsNullOrEmpty(formCollection["RegistrationNo"]))
+            if (!string.IsNullOrEmpty(formCollection["PersonalDetails.RegistrationNo"]))
             {
-                personalDetails.RegistrationNo = formCollection["RegistrationNo"].ToString();
+                personalDetails.RegistrationNo = formCollection["PersonalDetails.RegistrationNo"].ToString();
             }
-            if (!string.IsNullOrEmpty(formCollection["NatureOfDocument"]))
+            if (!string.IsNullOrEmpty(formCollection["PersonalDetails.NatureOfDocument"]))
             {
-                personalDetails.RegistrationNo = formCollection["NatureOfDocument"].ToString();
+                personalDetails.NatureOfDocument = formCollection["PersonalDetails.NatureOfDocument"].ToString();
             }
-            if (!string.IsNullOrEmpty(formCollection["ReasonOfApplying"]))
+            if (!string.IsNullOrEmpty(formCollection["PersonalDetails.ReasonOfApplying"]))
             {
-                personalDetails.RegistrationNo = formCollection["ReasonOfApplying"].ToString();
+                personalDetails.ReasonOfApplying = formCollection["PersonalDetails.ReasonOfApplying"].ToString();
             }
             StudentDetailsDal studentDetailsDal = new StudentDetailsDal();
+            StudentDetailsModel studentDetailsModel = new StudentDetailsModel();
+            studentDetailsModel.PersonalDetails = personalDetails;
             personalDetails.StudentId = studentDetailsDal.AddPersonalDetails(personalDetails);
-            return View("PersonalDetails.cshtml", personalDetails);
+            return PartialView("PersonalDetails", studentDetailsModel);
         }
 
         [HttpPost]
         public ActionResult SaveAddressDetails(FormCollection formCollection)
         {
             AddressDetails addressDetails = new AddressDetails();
-            if (!string.IsNullOrEmpty(formCollection["FullAddress"]))
+            if (!string.IsNullOrEmpty(formCollection["AddressDetails.FullAddress"]))
             {
-                addressDetails.FullAddress = formCollection["FullAddress"].ToString();
+                addressDetails.FullAddress = formCollection["AddressDetails.FullAddress"].ToString();
             }
-            if (!string.IsNullOrEmpty(formCollection["PhoneNumberOffice"]))
+            if (!string.IsNullOrEmpty(formCollection["AddressDetails.PhoneNumberOffice"]))
             {
-                addressDetails.PhoneNumberOffice = formCollection["PhoneNumberOffice"].ToString();
+                addressDetails.PhoneNumberOffice = formCollection["AddressDetails.PhoneNumberOffice"].ToString();
             }
-            if (!string.IsNullOrEmpty(formCollection["PhoneNumberResidence"]))
+            if (!string.IsNullOrEmpty(formCollection["AddressDetails.PhoneNumberResidence"]))
             {
-                addressDetails.PhoneNumberResidence = formCollection["PhoneNumberResidence"].ToString();
+                addressDetails.PhoneNumberResidence = formCollection["AddressDetails.PhoneNumberResidence"].ToString();
             }
-            if (!string.IsNullOrEmpty(formCollection["EmailId"]))
+            if (!string.IsNullOrEmpty(formCollection["AddressDetails.EmailId"]))
             {
-                addressDetails.EmailId = formCollection["EmailId"].ToString();
+                addressDetails.EmailId = formCollection["AddressDetails.EmailId"].ToString();
             }
             StudentDetailsDal studentDetailsDal = new StudentDetailsDal();
             addressDetails.AddressDetailsId = studentDetailsDal.SaveAddressDetails(addressDetails);
@@ -81,41 +83,41 @@ namespace EduSite.Controllers
         {
             FeeDetails feeDetails = new FeeDetails();
 
-            if (!string.IsNullOrEmpty(formCollection["StudentId"]))
+            if (!string.IsNullOrEmpty(formCollection["FeeDetails.StudentId"]))
             {
-                feeDetails.StudentId = formCollection["StudentId"].ToString();
+                feeDetails.StudentId = formCollection["FeeDetails.StudentId"].ToString();
             }
-            if (!string.IsNullOrEmpty(formCollection["TransactionId"]))
+            if (!string.IsNullOrEmpty(formCollection["FeeDetails.TransactionId"]))
             {
-                feeDetails.TransactionId = formCollection["TransactionId"].ToString();
+                feeDetails.TransactionId = formCollection["FeeDetails.TransactionId"].ToString();
             }
-            if (!string.IsNullOrEmpty(formCollection["Date"]))
+            if (!string.IsNullOrEmpty(formCollection["FeeDetails.Date"]))
             {
-                feeDetails.Date = formCollection["Date"].AsDateTime();
+                feeDetails.Date = formCollection["FeeDetails.Date"].AsDateTime();
             }
-            if (!string.IsNullOrEmpty(formCollection["PayeeName"]))
+            if (!string.IsNullOrEmpty(formCollection["FeeDetails.PayeeName"]))
             {
-                feeDetails.PayeeName = formCollection["PayeeName"].ToString();
+                feeDetails.PayeeName = formCollection["FeeDetails.PayeeName"].ToString();
             }
-            if (!string.IsNullOrEmpty(formCollection["FathersName"]))
+            if (!string.IsNullOrEmpty(formCollection["FeeDetails.FathersName"]))
             {
-                feeDetails.FathersName = formCollection["FathersName"].ToString();
+                feeDetails.FathersName = formCollection["FeeDetails.FathersName"].ToString();
             }
-            if (!string.IsNullOrEmpty(formCollection["DOB"]))
+            if (!string.IsNullOrEmpty(formCollection["FeeDetails.DOB"]))
             {
-                feeDetails.DOB = formCollection["DOB"].AsDateTime();
+                feeDetails.DOB = formCollection["FeeDetails.DOB"].AsDateTime();
             }
-            if (!string.IsNullOrEmpty(formCollection["PhoneNumberOffice"]))
+            if (!string.IsNullOrEmpty(formCollection["FeeDetails.PhoneNumberOffice"]))
             {
-                feeDetails.PhoneNumberOffice = formCollection["PhoneNumberOffice"].ToString();
+                feeDetails.PhoneNumberOffice = formCollection["FeeDetails.PhoneNumberOffice"].ToString();
             }
-            if (!string.IsNullOrEmpty(formCollection["FeeDescription"]))
+            if (!string.IsNullOrEmpty(formCollection["FeeDetails.FeeDescription"]))
             {
-                feeDetails.FeeDescription = formCollection["FeeDescription"].ToString();
+                feeDetails.FeeDescription = formCollection["FeeDetails.FeeDescription"].ToString();
             }
-            if (!string.IsNullOrEmpty(formCollection["Amount"]))
+            if (!string.IsNullOrEmpty(formCollection["FeeDetails.Amount"]))
             {
-                feeDetails.Amount = Convert.ToDecimal(formCollection["Amount"]);
+                feeDetails.Amount = Convert.ToDecimal(formCollection["FeeDetails.Amount"]);
             }
             StudentDetailsDal studentDetailsDal = new StudentDetailsDal();
             feeDetails.FeeDetailsId = studentDetailsDal.AddFeeDetails(feeDetails);

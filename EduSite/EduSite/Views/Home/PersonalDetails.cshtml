@@ -2,7 +2,7 @@
 
 
     <div class="container">
-        <form method="post" action="Home\SavePersonalDetails">
+        <form method="post" action="Home\SavePersonalDetails" id="PersonaDetailsForm">
             <div class="row">
                 <div class=" col-md-2">
                     <label>Name:</label>
@@ -31,7 +31,7 @@
                     <label>Registration No:</label>
                 </div>
                 <div class="col-md-4">
-                    @Html.TextBoxFor(Model => Model.PersonalDetails.FatherName, new { id = "RegistrationNo", name = "RegistrationNo" })
+                    @Html.TextBoxFor(Model => Model.PersonalDetails.RegistrationNo, new { id = "RegistrationNo", name = "RegistrationNo" })
                     @Html.ValidationMessageFor(Model => Model.PersonalDetails.RegistrationNo)
                 </div>
 
@@ -41,7 +41,7 @@
                     <label>Nature Of Document:</label>
                 </div>
                 <div class="col-md-4">
-                    @Html.TextBoxFor(Model => Model.PersonalDetails.FatherName, new { id = "NatureOfDocument", name = "NatureOfDocument" })
+                    @Html.TextBoxFor(Model => Model.PersonalDetails.NatureOfDocument, new { id = "NatureOfDocument", name = "NatureOfDocument" })
                     @Html.ValidationMessageFor(Model => Model.PersonalDetails.NatureOfDocument)
                 </div>
                 <div class=" col-md-2">
@@ -59,7 +59,7 @@
                     <label></label>
                 </div>
                 <div class="col-md-4">
-                    <input type="button" title="save" value="Save" />
+                    <input type="submit" title="save" value="Save" />
                 </div>
                 @*<div class=" col-md-2">
                 <label></label>

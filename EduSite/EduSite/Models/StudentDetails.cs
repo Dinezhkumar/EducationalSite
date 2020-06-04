@@ -26,6 +26,7 @@ namespace UnivSite.Models
             public string RegistrationNo { get; set; }
             public string NatureOfDocument { get; set; }
             public string ReasonOfApplying { get; set; }
+            public string College { get; set; }
         }
         public class AcademicDetails
         {

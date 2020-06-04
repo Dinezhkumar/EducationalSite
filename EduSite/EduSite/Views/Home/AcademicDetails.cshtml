@@ -94,14 +94,14 @@
             </td>
             <td style="width: 200px">
                 <br />
-                <input type="button" id="btnAdd" value="Add" />
+                <input type="button" id="btnAdd" value="Add" onclick="AddNewSemesterDetails()"/>
             </td>
         </tr>
     </table>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
     <script type="text/javascript">
-        $(function () {
+        $(document).ready(function () {
             //Remove the dummy row if data present.
             if ($("#tblCustomers tr").length > 2) {
                 $("#tblCustomers tr:eq(1)").remove();
@@ -141,8 +141,8 @@
             $("#tblCustomers").append(row);
         };
 
-        //Add event handler.
-        $("body").on("click", "#btnAdd", function () {
+        function AddNewSemesterDetails() {
+            debugger;
             var txtCourse = $("#txtCourse");
             var txtSemester = $("#txtSemester");
             var txtYear = $("#txtYear");
@@ -157,16 +157,56 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (r) {
-                    var row = $("#tblCustomers tr:last-child");
-                    if ($("#tblCustomers tr:last-child span").eq(0).html() != "&nbsp;") {
-                        row = row.clone();
+
+                    if (r == 'Please fill all the details')
+                        alert('Please fill all the details');
+                    else {
+                        debugger;
+                        var row = $("#tblCustomers tr:last-child");
+                        if ($("#tblCustomers tr:last-child span").eq(0).html() != "&nbsp;") {
+                            row = row.clone();
+                        }
+                        console.log(r);
+                        AppendRow(row, r.AcademicDetailsId, r.Course, r.Semester, r.Year, r.CollegeName, r.MarksScored, r.MaxMark);
+                        txtCourse.val("");
+                        txtSemester.val("");
+                        txtYear.val("");
+                        txtCollege.val("");
+                        txtMarksScored.val("");
+                        txtMaxMarks.val("");
                     }
-                    AppendRow(row, r.AcademicDetailsId, r.Course, r.Semester, r.Year, r.CollegeName, r.MarksScored, r.MaxMark);
-                    txtCourse.val("");
-                    txtSemester.val("");
+                    
                 }
             });
-        });
+        }
+
+        //Add event handler.
+        //$("body").on("click", "#btnAdd", function () {
+        //    debugger;
+        //    var txtCourse = $("#txtCourse");
+        //    var txtSemester = $("#txtSemester");
+        //    var txtYear = $("#txtYear");
+        //    var txtCollege = $("#txtCollege");
+        //    var txtMarksScored = $("#txtMarksScored");
+        //    var txtMaxMarks = $("#txtMaxMarks");
+
+        //    $.ajax({
+        //        type: "POST",
+        //        url: "/Home/InsertAcademicDetails",
+        //        data: '{course: "' + txtCourse.val() + '", semester: "' + txtSemester.val() + '", Year: "' + txtYear.val() + '", CollegeName: "' + txtCollege.val() + '", MarksScored: "' + txtMarksScored.val() + '", MaxMark: "' + txtMaxMarks.val() + '" }',
+        //        contentType: "application/json; charset=utf-8",
+        //        dataType: "json",
+        //        success: function (r) {
+        //            var row = $("#tblCustomers tr:last-child");
+        //            if ($("#tblCustomers tr:last-child span").eq(0).html() != "&nbsp;") {
+        //                row = row.clone();
+        //            }
+        //            AppendRow(row, r.AcademicDetailsId, r.Course, r.Semester, r.Year, r.CollegeName, r.MarksScored, r.MaxMark);
+        //            txtCourse.val("");
+        //            txtSemester.val("");
+        //        }
+        //    });
+        //});
 
         //Edit event handler.
         $("body").on("click", "#tblCustomers .Edit", function () {

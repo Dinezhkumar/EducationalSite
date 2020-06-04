@@ -37,7 +37,7 @@ namespace UnivSite.Models
             public string CollegeName { get; set; }
             public decimal MarksScored { get; set; }
             public decimal MaxMark { get; set; }
-            public string UploadFile { get; set; }
+            public string UploadFileId { get; set; }
 
         }
         public class AddressDetails

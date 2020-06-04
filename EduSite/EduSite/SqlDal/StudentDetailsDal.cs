@@ -13,21 +13,30 @@ namespace EduSite.SqlDal
         #region AcademicDetails
         public string AddAcademicDetails(AcademicDetails academicDetails)
         {
-            string AcademicDetailsId = new Guid().ToString();
+            string AcademicDetailsId = Guid.NewGuid().ToString();
             string connectionString = System.Configuration.ConfigurationManager.
-             ConnectionStrings["connectionStringName"].ConnectionString;
-            string query = "INSERT INTO AcademeicDetails VALUES(@AcademicDetailsId, @Course, @Semester, @Year, @CollegeName, @MarksScored, @MaxMark)";
+             ConnectionStrings["DBConnectionString"].ConnectionString;
+            string query = "INSERT INTO AcademicDetails VALUES(@AcademicDetailsId,@StudentId, @Course, @Semester, @Year, @CollegeName, @MarksScored, @MaxMark,@UploadFileId,@status)";
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(query))
                 {
                     cmd.Parameters.AddWithValue("@AcademicDetailsId", AcademicDetailsId);
+                    if (string.IsNullOrEmpty(academicDetails.StudentId))
+                        cmd.Parameters.AddWithValue("@StudentId", DBNull.Value);
+                    else
+                        cmd.Parameters.Add("@StudentId", System.Data.SqlDbType.NVarChar).Value = academicDetails.StudentId;
+                    if (string.IsNullOrEmpty(academicDetails.UploadFileId))
+                        cmd.Parameters.AddWithValue("@UploadFileId", DBNull.Value);
+                    else
+                        cmd.Parameters.Add("@UploadFileId", System.Data.SqlDbType.NVarChar).Value = academicDetails.UploadFileId;
                     cmd.Parameters.AddWithValue("@Course", academicDetails.Course);
                     cmd.Parameters.AddWithValue("@Semester", academicDetails.Semester);
                     cmd.Parameters.AddWithValue("@Year", academicDetails.Year);
                     cmd.Parameters.AddWithValue("@CollegeName", academicDetails.CollegeName);
                     cmd.Parameters.AddWithValue("@MarksScored", academicDetails.MarksScored);
                     cmd.Parameters.AddWithValue("@MaxMark", academicDetails.MaxMark);
+                    cmd.Parameters.AddWithValue("@status", true);
                     cmd.Connection = con;
                     con.Open();
                     cmd.ExecuteNonQuery();
@@ -41,7 +50,7 @@ namespace EduSite.SqlDal
         public void UpdateAcademicDetails(AcademicDetails academicDetails)
         {
             string connectionString = System.Configuration.ConfigurationManager.
-             ConnectionStrings["connectionStringName"].ConnectionString;
+             ConnectionStrings["DBConnectionString"].ConnectionString;
             string query = "UPDATE AcademeicDetails SET Course=@Course, Semester=@Semester, Year=@Year, CollegeName=@CollegeName, MarksScored=@MarksScored, MaxMark=@MaxMark WHERE AcademicDetailsId=@AcademicDetailsId";
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -64,7 +73,7 @@ namespace EduSite.SqlDal
         public void DeleteAcademicDetails(string AcademicDetailsId)
         {
             string connectionString = System.Configuration.ConfigurationManager.
-             ConnectionStrings["connectionStringName"].ConnectionString;
+             ConnectionStrings["DBConnectionString"].ConnectionString;
             string query = "DELETE FROM AcademeicDetails WHERE AcademicDetailsId=@AcademicDetailsId";
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -83,7 +92,7 @@ namespace EduSite.SqlDal
         {
             List<AcademicDetails> academicDetailsLst = new List<AcademicDetails>();
             string connectionString = System.Configuration.ConfigurationManager.
-             ConnectionStrings["connectionStringName"].ConnectionString;
+             ConnectionStrings["DBConnectionString"].ConnectionString;
             string query = "select * FROM AcademeicDetails WHERE studentId=@studentId";
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -125,7 +134,7 @@ namespace EduSite.SqlDal
         {
             string StudentId = new Guid().ToString();
             string connectionString = System.Configuration.ConfigurationManager.
-             ConnectionStrings["connectionStringName"].ConnectionString;
+             ConnectionStrings["DBConnectionString"].ConnectionString;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = "insert into PersonalDetails(StudentId,ApplicantName,FatherName,MotherName,RegistrationNo,NatureOfDocument,ReasonOfApplying,status)values(@StudentId,@ApplicantName,@FatherName,@MotherName,@RegistrationNo,@NatureOfDocument,@ReasonOfApplying,@status)";
@@ -151,7 +160,7 @@ namespace EduSite.SqlDal
         {
             string FeeDetailsId = new Guid().ToString();
             string connectionString = System.Configuration.ConfigurationManager.
-             ConnectionStrings["connectionStringName"].ConnectionString;
+             ConnectionStrings["DBConnectionString"].ConnectionString;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = "insert into FeeDetails(FeeDetailsId,StudentId,TransactionId,Date,PayeeName,FathersName,DOB,PhoneNumberOffice,FeeDescription,status)values(@FeeDetailsId,@StudentId,@TransactionId,@Date,@PayeeName,@FathersName,@DOB,@PhoneNumberOffice,@FeeDescription,@status)";
@@ -182,7 +191,7 @@ namespace EduSite.SqlDal
         {
             string AddressDetailsId = new Guid().ToString();
             string connectionString = System.Configuration.ConfigurationManager.
-            ConnectionStrings["connectionStringName"].ConnectionString;
+            ConnectionStrings["DBConnectionString"].ConnectionString;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = "insert into AddressDetails(AddressDetailsId,StudentId,FullAddress,PhoneNumberOffice,PhoneNumberResidence,EmailId,status) values(@AddressDetailsId,@StudentId,@FullAddress,@PhoneNumberOffice,@PhoneNumberResidence,@EmailId,@status)";
